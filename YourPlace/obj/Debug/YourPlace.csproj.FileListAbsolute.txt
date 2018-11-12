@@ -71,3 +71,4 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.dll
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.pdb
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.InitialModel.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.csproj.GenerateResource.Cache
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.DeletedAdressFromRestaurant.resources
