@@ -1,0 +1,19 @@
+﻿@model YourPlace.Models.Customer
+@{
+    ViewBag.Title = "NewCustomer";
+}
+
+<h2>New Customer</h2>
+
+@using (Html.BeginForm("Save", "Customers"))
+{
+    <div>
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password)
+    </div>
+    <button type="submit">Save</button>
+}
