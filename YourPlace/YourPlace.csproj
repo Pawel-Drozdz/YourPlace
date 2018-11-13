@@ -193,7 +193,7 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\RestaurantsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201811120046065_DeletedAdressFromRestaurant.cs" />
     <Compile Include="Migrations\201811120046065_DeletedAdressFromRestaurant.Designer.cs">
       <DependentUpon>201811120046065_DeletedAdressFromRestaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811132303250_ChangedRestaurantModel.cs" />
+    <Compile Include="Migrations\201811132303250_ChangedRestaurantModel.Designer.cs">
+      <DependentUpon>201811132303250_ChangedRestaurantModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -273,9 +277,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
+    <Content Include="Views\Restaurants\Index.cshtml" />
     <Content Include="Views\Customers\NewCustomer.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Restaurants\NewRestaurant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811120046065_DeletedAdressFromRestaurant.resx">
       <DependentUpon>201811120046065_DeletedAdressFromRestaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811132303250_ChangedRestaurantModel.resx">
+      <DependentUpon>201811132303250_ChangedRestaurantModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

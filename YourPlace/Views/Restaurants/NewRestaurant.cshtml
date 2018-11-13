@@ -1,0 +1,24 @@
+﻿@model YourPlace.Models.Restaurant
+@{
+    ViewBag.Title = "NewRestaurant";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Restaurant</h2>
+@using (Html.BeginForm("Save", "Restaurants"))
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.RestaurantType)
+        @Html.TextBoxFor(m => m.RestaurantType)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Localisation)
+        @Html.TextBoxFor(m => m.Localisation)
+    </div>
+    <button type="submit">Save</button>
+}
+
