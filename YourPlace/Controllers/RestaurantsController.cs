@@ -38,6 +38,17 @@ namespace YourPlace.Controllers
 
         public ActionResult Save(Restaurant restaurant)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new Restaurant()
+                {
+                    Name = restaurant.Name,
+                    RestaurantType = restaurant.RestaurantType,
+                    Localisation = restaurant.Localisation
+                };
+                
+                return View("NewRestaurant", viewModel);
+            }
             _context.Restaurants.Add(restaurant);
             _context.SaveChanges();
 

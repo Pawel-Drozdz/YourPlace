@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201811132303250_ChangedRestaurantModel.Designer.cs">
       <DependentUpon>201811132303250_ChangedRestaurantModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811300029355_AddValidationForRestaurant.cs" />
+    <Compile Include="Migrations\201811300029355_AddValidationForRestaurant.Designer.cs">
+      <DependentUpon>201811300029355_AddValidationForRestaurant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811132303250_ChangedRestaurantModel.resx">
       <DependentUpon>201811132303250_ChangedRestaurantModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811300029355_AddValidationForRestaurant.resx">
+      <DependentUpon>201811300029355_AddValidationForRestaurant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -73,3 +73,4 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.I
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.csproj.GenerateResource.Cache
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.DeletedAdressFromRestaurant.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.ChangedRestaurantModel.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddValidationForRestaurant.resources
