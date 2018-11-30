@@ -1,0 +1,27 @@
+﻿@model YourPlace.Models.Restaurant
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Save", "Restaurants"))
+{
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.RestaurantType)
+        @Html.TextBoxFor(m => m.RestaurantType)
+        @Html.ValidationMessageFor(m => m.RestaurantType)
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Localisation)
+        @Html.TextBoxFor(m => m.Localisation)
+        @Html.ValidationMessageFor(m => m.Localisation)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    <button type="submit">Save</button>
+}
