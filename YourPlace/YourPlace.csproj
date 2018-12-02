@@ -213,8 +213,13 @@
     <Compile Include="Migrations\201811300029355_AddValidationForRestaurant.Designer.cs">
       <DependentUpon>201811300029355_AddValidationForRestaurant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812022227400_Add COMMENT entity, create one ot many relation with RESTAURANT entity.cs" />
+    <Compile Include="Migrations\201812022227400_Add COMMENT entity, create one ot many relation with RESTAURANT entity.Designer.cs">
+      <DependentUpon>201812022227400_Add COMMENT entity, create one ot many relation with RESTAURANT entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Restaurant.cs" />
@@ -222,7 +227,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AllCustomersViewModel.cs" />
-    <Compile Include="ViewModels\RestaurantsViewModel.cs" />
+    <Compile Include="ViewModels\AllRestaurantsViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -316,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811300029355_AddValidationForRestaurant.resx">
       <DependentUpon>201811300029355_AddValidationForRestaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812022227400_Add COMMENT entity, create one ot many relation with RESTAURANT entity.resx">
+      <DependentUpon>201812022227400_Add COMMENT entity, create one ot many relation with RESTAURANT entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

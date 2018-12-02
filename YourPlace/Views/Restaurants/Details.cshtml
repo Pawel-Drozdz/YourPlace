@@ -1,17 +1,28 @@
-﻿@model YourPlace.Models.Restaurant
+﻿@model YourPlace.ViewModels.RestaurantViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<h2>@Model.Restaurant.Name</h2>
 <ul>
-    <li>Restaurant type: @Model.RestaurantType</li>
-    <li>Localisation: @Model.Localisation</li>
+    <li>Restaurant type: @Model.Restaurant.RestaurantType</li>
+    <li>Localisation: @Model.Restaurant.Localisation</li>
 </ul>
-@Html.ActionLink("Edit", "Edit", "Restaurants", new { id = Model.Id }, null)
-@using (Html.BeginForm("Delete", "Restaurants", new { id = Model.Id }))
+@Html.ActionLink("Edit", "Edit", "Restaurants", new { id = Model.Restaurant.Id }, null)
+@using (Html.BeginForm("Delete", "Restaurants", new { id = Model.Restaurant.Id }))
 {
     <button type="submit">Delete</button>
+}
+@using (Html.BeginForm("AddComment", "Restaurants", new { id = Model.Restaurant.Id }))
+{
+    @Html.TextBoxFor(c => c.NewComment.Body)
+    <button type="submit">Add comment</button>
+}
+@foreach (var comment in Model.Comments)
+{
+    <ul>
+        <li>@comment.Body</li>
+    </ul>
 }
 

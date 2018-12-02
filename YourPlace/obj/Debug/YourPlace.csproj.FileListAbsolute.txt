@@ -74,3 +74,4 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.csproj.Gener
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.DeletedAdressFromRestaurant.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.ChangedRestaurantModel.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddValidationForRestaurant.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddCOMMENTentitycreateoneotmanyrelationwithRESTAURANTentity.resources

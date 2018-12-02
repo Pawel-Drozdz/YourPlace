@@ -24,7 +24,7 @@ namespace YourPlace.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = new RestaurantsViewModel()
+            var viewModel = new AllRestaurantsViewModel()
             {
                 Restaurants = _context.Restaurants.ToList()
             };
@@ -76,12 +76,18 @@ namespace YourPlace.Controllers
 
         public ActionResult Details(int id)
         {
-            var restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id);
-            if (restaurant == null)
+            var restaurantViewModel = new RestaurantViewModel()
+            {
+                Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
+                Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
+                NewComment = new Comment()
+            };
+
+            if (restaurantViewModel.Restaurant == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurant);
+            return View(restaurantViewModel);
         }
 
         [HttpGet]
@@ -105,6 +111,15 @@ namespace YourPlace.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Restaurants");
+        }
+
+        public ActionResult AddComment(int id, Comment newComment)
+        {
+            newComment.RestaurantId = id;
+            _context.Comments.Add(newComment);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Restaurants", new { Id = id});
         }
     }
 }
