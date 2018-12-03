@@ -21,7 +21,7 @@ namespace YourPlace.Controllers
         {
             _context.Dispose();
         }
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var viewModel = new AllRestaurantsViewModel()
@@ -73,7 +73,7 @@ namespace YourPlace.Controllers
 
             return RedirectToAction("Index");
         }
-
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             var restaurantViewModel = new RestaurantViewModel()
