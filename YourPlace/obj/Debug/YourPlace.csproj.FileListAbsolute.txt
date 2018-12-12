@@ -75,3 +75,4 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.D
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.ChangedRestaurantModel.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddValidationForRestaurant.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddCOMMENTentitycreateoneotmanyrelationwithRESTAURANTentity.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.SeedUsers.resources

@@ -89,7 +89,7 @@ namespace YourPlace.Controllers
             }
             return View(restaurantViewModel);
         }
-
+        
         [HttpGet]
         public ActionResult Edit(int id)
         {
