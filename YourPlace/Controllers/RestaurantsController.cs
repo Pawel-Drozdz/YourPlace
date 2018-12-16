@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -73,21 +74,25 @@ namespace YourPlace.Controllers
 
             return RedirectToAction("Index");
         }
+
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
-            var restaurantViewModel = new RestaurantViewModel()
-            {
-                Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
-                Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
-                NewComment = new Comment()
-            };
+                var restaurantViewModel = new RestaurantViewModel()
+                {
+                    Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
+                    Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
+                    NewComment = new Comment()
+                    {
+                        
+                    }
+                };
 
-            if (restaurantViewModel.Restaurant == null)
-            {
-                return HttpNotFound();
-            }
-            return View(restaurantViewModel);
+                if (restaurantViewModel.Restaurant == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(restaurantViewModel);
         }
         
         [HttpGet]
@@ -115,7 +120,13 @@ namespace YourPlace.Controllers
 
         public ActionResult AddComment(int id, Comment newComment)
         {
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
             newComment.RestaurantId = id;
+            newComment.AuthorId = Guid.Parse(userId);
+            newComment.AuthorName = user.UserName;
+
             _context.Comments.Add(newComment);
             _context.SaveChanges();
 

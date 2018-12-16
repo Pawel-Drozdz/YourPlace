@@ -76,3 +76,4 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.C
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddValidationForRestaurant.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddCOMMENTentitycreateoneotmanyrelationwithRESTAURANTentity.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.SeedUsers.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddedUserPropertiesToCommentModel.resources

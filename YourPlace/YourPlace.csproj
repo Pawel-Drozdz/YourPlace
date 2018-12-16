@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201812122202441_SeedUsers.Designer.cs">
       <DependentUpon>201812122202441_SeedUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812162221263_AddedUserPropertiesToCommentModel.cs" />
+    <Compile Include="Migrations\201812162221263_AddedUserPropertiesToCommentModel.Designer.cs">
+      <DependentUpon>201812162221263_AddedUserPropertiesToCommentModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -332,6 +336,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812122202441_SeedUsers.resx">
       <DependentUpon>201812122202441_SeedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812162221263_AddedUserPropertiesToCommentModel.resx">
+      <DependentUpon>201812162221263_AddedUserPropertiesToCommentModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
