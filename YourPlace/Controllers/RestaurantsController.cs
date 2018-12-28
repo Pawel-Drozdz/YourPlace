@@ -126,6 +126,7 @@ namespace YourPlace.Controllers
             newComment.RestaurantId = id;
             newComment.AuthorId = Guid.Parse(userId);
             newComment.AuthorName = user.UserName;
+            newComment.DateTime = DateTime.Now;
 
             _context.Comments.Add(newComment);
             _context.SaveChanges();
