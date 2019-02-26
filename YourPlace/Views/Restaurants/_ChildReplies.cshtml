@@ -1,0 +1,19 @@
+﻿@model  List<Reply>
+
+@using YourPlace.Models
+
+<ul>
+    @foreach (var reply in @Model)
+     {
+        <li>
+            Author: @reply.AuthorName<br />
+            Comment: @reply.Body
+            @if (reply.ChildReplies != null && reply.ChildReplies.Count > 0)
+             {
+                <div>
+                 @{Html.RenderPartial("_ChildReplies", reply.ChildReplies); }
+                </div>
+             }
+        </li> 
+     }
+</ul>

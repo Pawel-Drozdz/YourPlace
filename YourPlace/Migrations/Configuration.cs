@@ -10,6 +10,7 @@ namespace YourPlace.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(YourPlace.Models.ApplicationDbContext context)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace YourPlace.Models
 {
@@ -9,6 +10,7 @@ namespace YourPlace.Models
         public Guid AuthorId { get; set; }
         public string AuthorName { get; set; }
         public DateTime DateTime { get; set; }
+        public List<Reply> Replies { get; set; }
 
         public int RestaurantId { get; set; }
         public Restaurant Restaurant { get; set; }

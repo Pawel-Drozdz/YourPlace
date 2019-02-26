@@ -1,0 +1,27 @@
+﻿@model List<Reply>
+
+@using YourPlace.Models
+
+@*Refactor this!!!!!!!!!!!!*@
+@*@{ 
+    //var parentReply = new List<Reply>();
+    //foreach (var parRep in Model)
+    //{
+    //    if (parRep.ParentReplyId == 0)
+    //    {
+    //        parentReply.Add(parRep);
+    //    }
+    //}
+}*@
+<ul> 
+    @foreach (var parRep in Model)
+    {
+        <li>
+            Author: @parRep.AuthorName<br />
+            Comment: @parRep.Body
+            <div>
+            @{Html.RenderPartial("_ChildReplies", parRep.ChildReplies);}
+            </div>
+        </li>
+    }
+</ul>

@@ -8,5 +8,6 @@ namespace YourPlace.ViewModels
         public Restaurant Restaurant { get; set; }
         public List<Comment> Comments { get; set; }
         public Comment NewComment { get; set; }
+        public Reply NewReply { get; set; }
     }
 }

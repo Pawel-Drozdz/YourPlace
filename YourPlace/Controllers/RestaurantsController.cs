@@ -78,23 +78,41 @@ namespace YourPlace.Controllers
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
-                var restaurantViewModel = new RestaurantViewModel()
-                {
-                    Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
-                    Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
-                    NewComment = new Comment()
-                    {
-                        
-                    }
-                };
+            var restaurantViewModel = new RestaurantViewModel()
+            {
+                Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
+                Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
+                NewComment = new Comment()
+            };
 
-                if (restaurantViewModel.Restaurant == null)
+            foreach (var comment in restaurantViewModel.Comments)
+            {
+                comment.Replies = _context.Replies.Where(r => r.CommentId == comment.Id && r.ParentReplyId == 0).ToList();
+                foreach (var parentReply in comment.Replies)
                 {
-                    return HttpNotFound();
+                    parentReply.ChildReplies = GetChildReplies(parentReply);
                 }
-                return View(restaurantViewModel);
+            }
+
+            if (restaurantViewModel.Restaurant == null)
+            {
+                return HttpNotFound();
+            }
+            return View(restaurantViewModel);
         }
-        
+
+        //Helper method, should be moved to a different file
+        public List<Reply> GetChildReplies(Reply reply)
+        {
+            var childReplies = _context.Replies.Where(r => r.ParentReplyId == reply.Id).ToList();
+
+            foreach (var childReply in childReplies)
+            {
+                childReply.ChildReplies = GetChildReplies(childReply);
+            }
+            return childReplies;
+        }
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -133,5 +151,7 @@ namespace YourPlace.Controllers
 
             return RedirectToAction("Details", "Restaurants", new { Id = id});
         }
+
+       
     }
 }

@@ -23,6 +23,7 @@ namespace YourPlace.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Reply> Replies { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

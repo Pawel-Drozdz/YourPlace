@@ -221,15 +221,16 @@
     <Compile Include="Migrations\201812122202441_SeedUsers.Designer.cs">
       <DependentUpon>201812122202441_SeedUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812281713417_migration.cs" />
-    <Compile Include="Migrations\201812281713417_migration.Designer.cs">
-      <DependentUpon>201812281713417_migration.cs</DependentUpon>
+    <Compile Include="Migrations\201812290048239_AddedCommentAndReplyModels.cs" />
+    <Compile Include="Migrations\201812290048239_AddedCommentAndReplyModels.Designer.cs">
+      <DependentUpon>201812290048239_AddedCommentAndReplyModels.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +302,9 @@
     <Content Include="Views\Restaurants\NewRestaurant.cshtml" />
     <Content Include="Views\Restaurants\Details.cshtml" />
     <Content Include="Views\Restaurants\Edit.cshtml" />
+    <Content Include="Views\Restaurants\_Comments.cshtml" />
+    <Content Include="Views\Restaurants\_Replies.cshtml" />
+    <Content Include="Views\Restaurants\_ChildReplies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -337,8 +341,8 @@
     <EmbeddedResource Include="Migrations\201812122202441_SeedUsers.resx">
       <DependentUpon>201812122202441_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812281713417_migration.resx">
-      <DependentUpon>201812281713417_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812290048239_AddedCommentAndReplyModels.resx">
+      <DependentUpon>201812290048239_AddedCommentAndReplyModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

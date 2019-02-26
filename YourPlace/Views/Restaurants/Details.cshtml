@@ -23,7 +23,10 @@
 {
     <ul>
         <li>The Author: @comment.AuthorName <br />
-            Comment: @comment.Body</li>
+            Comment: @comment.Body
+            
+            @Html.Partial("_Replies", comment.Replies)
+        </li>
     </ul>
 }
 
