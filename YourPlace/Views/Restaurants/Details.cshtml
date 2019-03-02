@@ -1,4 +1,5 @@
 ﻿@model YourPlace.ViewModels.RestaurantViewModel
+@using YourPlace.ViewModels
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,10 +23,17 @@
 @foreach (var comment in Model.Comments)
 {
     <ul>
-        <li>The Author: @comment.AuthorName <br />
-            Comment: @comment.Body
-            
-            @Html.Partial("_Replies", comment.Replies)
+        <li>
+            The Author: @comment.AuthorName <br />
+            Comment: @comment.Body <br />
+            @using (Html.BeginForm("AddParentReply", "Restaurants", new { restaurantId = Model.Restaurant.Id, commentId = comment.Id }))
+            {
+                @Html.TextBoxFor(r => r.NewParentReply.Body)
+                <button type="submit">Reply</button>
+            }
+
+            @Html.Partial("_Replies", new ParentReplyViewModel { ParentReplies = comment.Replies, RestaurantId = Model.Restaurant.Id,
+           CommentId = comment.Id })
         </li>
     </ul>
 }

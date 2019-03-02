@@ -1,15 +1,22 @@
-﻿@model List<Reply>
+﻿@model  YourPlace.ViewModels.ParentReplyViewModel
 
 @using YourPlace.Models
-
+@using YourPlace.ViewModels
 <ul> 
-    @foreach (var parRep in Model)
+    @foreach (var parRep in Model.ParentReplies)
     {
         <li>
             Author: @parRep.AuthorName<br />
-            Comment: @parRep.Body
+            Comment: @parRep.Body<br />
+            @using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
+                parentReplyId = parRep.Id }))
+            {
+                @Html.TextBoxFor(r => r.NewChildReply.Body)
+                <button type = "submit">Reply</button>
+            }
             <div>
-            @{Html.RenderPartial("_ChildReplies", parRep.ChildReplies);}
+            @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel { ChildReplies = parRep.ChildReplies,
+                    RestaurantId = Model.RestaurantId, CommentId = Model.CommentId });}
             </div>
         </li>
     }

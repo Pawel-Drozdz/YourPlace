@@ -182,6 +182,40 @@ namespace YourPlace.Controllers
             return RedirectToAction("Details", "Restaurants", new { Id = id});
         }
 
-       
+        public ActionResult AddParentReply(int restaurantId, int commentId, Reply newParentReply)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            newParentReply.ParentReplyId = 0;
+            newParentReply.CommentId = commentId;
+            //newParentReply.AuthorId = Guid.Parse(userId); need to add AuthorId property to Reply model
+            newParentReply.AuthorName = user.UserName;
+            //newParentReply.DateTime = DateTime.Now(); need to add DateTime property to Reply Model'
+
+            _context.Replies.Add(newParentReply);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
+        }
+
+        public ActionResult AddChildReply(int restaurantId, int commentId, int parentReplyId, Reply newChildReply)
+        {
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            newChildReply.ParentReplyId = parentReplyId;
+            newChildReply.CommentId = commentId;
+            //newChildReply.AuthorId = Guid.Parse(userId); need to add AuthorId property to Reply model
+            newChildReply.AuthorName = user.UserName;
+            //newChildReply.DateTime = DateTime.Now(); need to add DateTime property to Reply Model'
+
+            _context.Replies.Add(newChildReply);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
+        }
+
+
     }
 }
