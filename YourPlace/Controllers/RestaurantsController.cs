@@ -81,7 +81,7 @@ namespace YourPlace.Controllers
             var restaurantViewModel = new RestaurantViewModel()
             {
                 Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
-                Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList(),
+                Comments = GetComments(id),
                 NewComment = new Comment()
             };
 
@@ -102,15 +102,45 @@ namespace YourPlace.Controllers
         }
 
         //Helper method, should be moved to a different file
+        public List<Comment> GetComments(int id)
+        {
+            var Comments = _context.Comments.Where(c => c.RestaurantId == id).ToList();
+            var comments = new List<Comment>();
+            foreach (var c in Comments)
+            {
+                var parentReplies = GetParentReplies(c);
+                comments.Add(new Comment() { AuthorId = c.AuthorId, AuthorName = c.AuthorName, Body = c.Body, DateTime = c.DateTime,
+                Id = c.Id, Replies = parentReplies});
+            }
+            return comments;
+        }
+
+        //Helper method, should be moved to a different file
+        public List<Reply> GetParentReplies(Comment comment)
+        {
+            var parentReplies = _context.Replies.Where(r => r.CommentId == comment.Id && r.ParentReplyId == 0).ToList();
+            var parReplies = new List<Reply>();
+            foreach (var pr in parentReplies)
+            {
+                var childRep = GetChildReplies(pr);
+                parReplies.Add(new Reply() { AuthorName = pr.AuthorName, Body = pr.Body, ParentReplyId = pr.ParentReplyId, Id = pr.Id,
+                    ChildReplies = pr.ChildReplies });
+            }
+            return parReplies;
+        }
+
+        //Helper method, should be moved to a different file
         public List<Reply> GetChildReplies(Reply reply)
         {
             var childReplies = _context.Replies.Where(r => r.ParentReplyId == reply.Id).ToList();
-
-            foreach (var childReply in childReplies)
+            var chReplies = new List<Reply>();
+            foreach (var chr in childReplies)
             {
-                childReply.ChildReplies = GetChildReplies(childReply);
+                var chRep = GetChildReplies(chr);
+                chReplies.Add(new Reply() { AuthorName = chr.AuthorName, Body = chr.Body, ParentReplyId = chr.ParentReplyId, Id = chr.Id,
+                ChildReplies = chRep});
             }
-            return childReplies;
+            return chReplies;
         }
 
         [HttpGet]
