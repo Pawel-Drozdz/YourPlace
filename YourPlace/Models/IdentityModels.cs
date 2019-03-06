@@ -17,6 +17,7 @@ namespace YourPlace.Models
             // Add custom user claims here
             return userIdentity;
         }
+        public DateTime DateOfRegister { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
