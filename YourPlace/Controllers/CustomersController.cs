@@ -26,10 +26,28 @@ namespace YourPlace.Controllers
         {
             var customers = new AllCustomersViewModel()
             {
-                Customers = _context.Customers.ToList()
+                Customers = _context.Users.ToList()
             };
             return View(customers);
         }
+
+        public ActionResult Details(Guid id)
+        {
+            var stringId = id.ToString();
+            var customer = _context.Users.FirstOrDefault(u => u.Id.Equals(stringId) == true);
+            return View(customer);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public ActionResult NewCustomer()
         {
