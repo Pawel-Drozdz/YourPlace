@@ -229,11 +229,20 @@
     <Compile Include="Migrations\201903062115037_Added DateOfRegister to ApplicationUser model.Designer.cs">
       <DependentUpon>201903062115037_Added DateOfRegister to ApplicationUser model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071950535_AddedJoinTable-Rate.cs" />
+    <Compile Include="Migrations\201903071950535_AddedJoinTable-Rate.Designer.cs">
+      <DependentUpon>201903071950535_AddedJoinTable-Rate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903072047387_RateModelChanged.cs" />
+    <Compile Include="Migrations\201903072047387_RateModelChanged.Designer.cs">
+      <DependentUpon>201903072047387_RateModelChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Reply.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -353,6 +362,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903062115037_Added DateOfRegister to ApplicationUser model.resx">
       <DependentUpon>201903062115037_Added DateOfRegister to ApplicationUser model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071950535_AddedJoinTable-Rate.resx">
+      <DependentUpon>201903071950535_AddedJoinTable-Rate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903072047387_RateModelChanged.resx">
+      <DependentUpon>201903072047387_RateModelChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

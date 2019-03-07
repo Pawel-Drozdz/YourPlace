@@ -9,7 +9,42 @@
 <ul>
     <li>Restaurant type: @Model.Restaurant.RestaurantType</li>
     <li>Localisation: @Model.Restaurant.Localisation</li>
+    <li>
+        Rating: @if (Model.Rating != 0)
+        {
+            <p>@Model.Rating</p>
+        }
+        else
+        {
+            <p>No one has rated this restaurant yet.</p>
+        }
+    </li>
 </ul>
+@if (Model.OldRate != 0 && User.Identity.IsAuthenticated)
+{
+    <p>Your rate: @Model.OldRate</p>
+    using (Html.BeginForm("UpdateRateOfRestaurant", "Restaurants", new { restaurantId = Model.Restaurant.Id }))
+    {
+        <div>
+            @Html.LabelFor(m => m.NewRate)
+            @Html.DropDownListFor(m => m.NewRate, new SelectList(Model.RatesForDropDownList))
+            <button type="submit">Rate</button>
+        </div>
+    }
+}
+else
+{
+    <p>You did not rate this restaurant yet.</p>
+    using (Html.BeginForm("RateRestaurant", "Restaurants", new { restaurantId = Model.Restaurant.Id }))
+    {
+        <div>
+            @Html.LabelFor(m => m.NewRate)
+            @Html.DropDownListFor(m => m.NewRate, new SelectList(Model.RatesForDropDownList))
+            <button type="submit">Rate</button>
+        </div>
+    }
+}
+
 @Html.ActionLink("Edit", "Edit", "Restaurants", new { id = Model.Restaurant.Id }, null)
 @using (Html.BeginForm("Delete", "Restaurants", new { id = Model.Restaurant.Id }))
 {
@@ -32,8 +67,12 @@
                 <button type="submit">Reply</button>
             }
 
-            @Html.Partial("_Replies", new ParentReplyViewModel { ParentReplies = comment.Replies, RestaurantId = Model.Restaurant.Id,
-           CommentId = comment.Id })
+            @Html.Partial("_Replies", new ParentReplyViewModel
+            {
+                ParentReplies = comment.Replies,
+                RestaurantId = Model.Restaurant.Id,
+                CommentId = comment.Id
+            })
         </li>
     </ul>
 }

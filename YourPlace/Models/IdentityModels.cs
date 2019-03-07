@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace YourPlace.Models
             return userIdentity;
         }
         public DateTime DateOfRegister { get; set; }
+        public List<Rate> Rating { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -26,6 +28,15 @@ namespace YourPlace.Models
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Reply> Replies { get; set; }
+        public DbSet<Rate> Ratings { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Rate>()
+                .HasKey(r => new { r.RestaurantId, r.UserId});
+
+            base.OnModelCreating(modelBuilder);
+        }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -34,6 +45,7 @@ namespace YourPlace.Models
 
         public static ApplicationDbContext Create()
         {
+            
             return new ApplicationDbContext();
         }
     }

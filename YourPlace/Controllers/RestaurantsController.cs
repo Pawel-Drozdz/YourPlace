@@ -77,11 +77,23 @@ namespace YourPlace.Controllers
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
+            var userId = User.Identity.GetUserId();
+            float oldrate;
+            if (User.Identity.IsAuthenticated)
+            {
+                oldrate = GetUsersOldRate(userId, id);
+            }
+            else
+            {
+                oldrate = 0;
+            }
             var restaurantViewModel = new RestaurantViewModel()
             {
                 Restaurant = _context.Restaurants.FirstOrDefault(r => r.Id == id),
                 Comments = GetComments(id),
-                NewComment = new Comment()
+                NewComment = new Comment(),
+                Rating = GetRestaurantRating(id),
+                OldRate = oldrate
             };
 
             foreach (var comment in restaurantViewModel.Comments)
@@ -215,6 +227,60 @@ namespace YourPlace.Controllers
             return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
         }
 
+        //Helper method, should be moved to a different file
+        public float GetRestaurantRating(int id)
+        {
+            float rating;
+            var ratings = _context.Ratings.Where(r => r.RestaurantId == id).ToList();
+            float sumOfRatings = 0;
+            int countOfRatings = 0;
+            if (ratings.Count != 0)
+            {
+                foreach (var r in ratings)
+                {
+                    sumOfRatings += r.Rating;
+                    countOfRatings += 1;
+                }
 
+                rating = (sumOfRatings / countOfRatings);
+                return rating;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //Helper method, should be moved to a different file
+        public float GetUsersOldRate (string userId, int restaurantId)
+        {
+            var guidUserId = new Guid(userId);
+            var rate = _context.Ratings.FirstOrDefault(r => r.UserId == guidUserId && r.RestaurantId == restaurantId);
+            return rate.Rating;
+        }
+
+        public ActionResult RateRestaurant(int newRate, int restaurantId)
+        {
+            var stringUserId = User.Identity.GetUserId();
+            var userId = new Guid(stringUserId);
+            var rate = new Rate() { Rating = newRate, UserId = userId, RestaurantId = restaurantId };
+
+            _context.Ratings.Add(rate);
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
+        }
+
+        public ActionResult UpdateRateOfRestaurant(int newRate, int restaurantId)
+        {
+            var stringUserId = User.Identity.GetUserId();
+            var userId = new Guid(stringUserId);
+            var rateFromDB = _context.Ratings.FirstOrDefault(r => r.UserId == userId && r.RestaurantId == restaurantId);
+            rateFromDB.Rating = newRate;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
+        }
     }
 }

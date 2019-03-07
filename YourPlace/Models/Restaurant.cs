@@ -22,5 +22,6 @@ namespace YourPlace.Models
         public string Localisation { get; set; }
 
         public List<Comment> Comments { get; set; }
+        public List<Rate> Rating { get; set; }
     }
 }
