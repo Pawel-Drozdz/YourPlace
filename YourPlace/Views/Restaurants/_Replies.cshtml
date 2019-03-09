@@ -5,19 +5,27 @@
 <ul> 
     @foreach (var parRep in Model.ParentReplies)
     {
-        <li>
-            Author: @parRep.AuthorName<br />
-            Comment: @parRep.Body<br />
-            @using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
-                parentReplyId = parRep.Id }))
+    <li>
+        Author: @parRep.AuthorName<br />
+        Comment: @parRep.Body<br />
+        @if (User.Identity.IsAuthenticated)
+        {
+            using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
+                parentReplyId = parRep.Id}))
             {
                 @Html.TextBoxFor(r => r.NewChildReply.Body)
-                <button type = "submit">Reply</button>
-            }
-            <div>
-            @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel { ChildReplies = parRep.ChildReplies,
-                    RestaurantId = Model.RestaurantId, CommentId = Model.CommentId });}
-            </div>
-        </li>
+                <button type="submit">Reply</button>
+            }   
+        }
+
+        <div>
+            @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel
+            {
+                ChildReplies = parRep.ChildReplies,
+                RestaurantId = Model.RestaurantId,
+                CommentId = Model.CommentId
+            });}
+        </div>
+    </li>
     }
 </ul>

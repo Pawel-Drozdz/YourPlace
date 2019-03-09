@@ -177,12 +177,12 @@ namespace YourPlace.Controllers
             return RedirectToAction("Index", "Restaurants");
         }
 
-        public ActionResult AddComment(int id, Comment newComment)
+        public ActionResult AddComment(RestaurantViewModel model, Comment newComment)
         {
             var userId = User.Identity.GetUserId();
             var user = _context.Users.FirstOrDefault(u => u.Id == userId);
 
-            newComment.RestaurantId = id;
+            newComment.RestaurantId = model.Restaurant.Id;
             newComment.AuthorId = Guid.Parse(userId);
             newComment.AuthorName = user.UserName;
             newComment.DateTime = DateTime.Now;
@@ -190,7 +190,7 @@ namespace YourPlace.Controllers
             _context.Comments.Add(newComment);
             _context.SaveChanges();
 
-            return RedirectToAction("Details", "Restaurants", new { Id = id});
+            return RedirectToAction("Details", "Restaurants", new { id = model.Restaurant.Id});
         }
 
         public ActionResult AddParentReply(int restaurantId, int commentId, Reply newParentReply)
@@ -256,6 +256,10 @@ namespace YourPlace.Controllers
         {
             var guidUserId = new Guid(userId);
             var rate = _context.Ratings.FirstOrDefault(r => r.UserId == guidUserId && r.RestaurantId == restaurantId);
+            if (rate == null)
+            {
+                return 0;
+            }
             return rate.Rating;
         }
 

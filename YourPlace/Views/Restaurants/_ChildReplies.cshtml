@@ -9,11 +9,14 @@
     <li>
         Author: @reply.AuthorName<br />
         Comment: @reply.Body
-        @using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
-            parentReplyId = reply.Id }))
+        @if (User.Identity.IsAuthenticated)
         {
-            @Html.TextBoxFor(r => r.NewChildReply.Body)
-            <button type="submit">Reply</button>
+            using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
+                parentReplyId = reply.Id}))
+            {
+                @Html.TextBoxFor(r => r.NewChildReply.Body)
+                <button type="submit">Reply</button>
+            }
         }
 
         @if (reply.ChildReplies != null && reply.ChildReplies.Count > 0)

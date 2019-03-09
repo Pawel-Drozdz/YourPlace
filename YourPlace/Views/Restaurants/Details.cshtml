@@ -50,21 +50,35 @@ else
 {
     <button type="submit">Delete</button>
 }
-@using (Html.BeginForm("AddComment", "Restaurants", new { id = Model.Restaurant.Id }))
+
+@if (User.Identity.IsAuthenticated)
 {
-    @Html.TextBoxFor(c => c.NewComment.Body)
-    <button type="submit">Add comment</button>
+    using (Html.BeginForm("AddComment", "Restaurants"))
+    {
+        @Html.TextBoxFor(c => c.NewComment.Body)
+        @Html.HiddenFor(m => m.Restaurant.Id)
+        <button type="submit">Add comment</button>
+    }
 }
+else
+{
+        <p>You must be @Html.ActionLink("logged in", "Login", "Account",
+                      new { returnUrl = $"/Restaurants/Details/{Model.Restaurant.Id}" }, null) to post a comment</p> 
+}
+
 @foreach (var comment in Model.Comments)
 {
     <ul>
         <li>
             The Author: @comment.AuthorName <br />
             Comment: @comment.Body <br />
-            @using (Html.BeginForm("AddParentReply", "Restaurants", new { restaurantId = Model.Restaurant.Id, commentId = comment.Id }))
+            @if (User.Identity.IsAuthenticated)
             {
-                @Html.TextBoxFor(r => r.NewParentReply.Body)
-                <button type="submit">Reply</button>
+                using (Html.BeginForm("AddParentReply", "Restaurants", new { restaurantId = Model.Restaurant.Id, commentId = comment.Id }))
+                {
+                    @Html.TextBoxFor(r => r.NewParentReply.Body)
+                    <button type="submit">Reply</button>
+                }
             }
 
             @Html.Partial("_Replies", new ParentReplyViewModel
