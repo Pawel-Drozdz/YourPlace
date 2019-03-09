@@ -6,7 +6,7 @@
     @foreach (var parRep in Model.ParentReplies)
     {
     <li>
-        @Html.ActionLink(parRep.AuthorName, "Details", "Customers", new { id = parRep.AuthorId }, null)<br />
+        ~@Html.ActionLink(parRep.AuthorName, "Details", "Customers", new { id = parRep.AuthorId }, null) - @parRep.TimeSinceAdding(parRep.CreateDate).Number@parRep.TimeSinceAdding(parRep.CreateDate).TimeUnit<br />
         @parRep.Body<br />
         @if (User.Identity.IsAuthenticated)
     {

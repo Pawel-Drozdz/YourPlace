@@ -78,7 +78,7 @@ else
 {
     <ul>
         <li>
-            @Html.ActionLink(comment.AuthorName, "Details", "Customers", new { id = comment.AuthorId}, null) <br />
+            ~@Html.ActionLink(comment.AuthorName, "Details", "Customers", new { id = comment.AuthorId}, null) - @comment.TimeSinceAdding(comment.DateTime).Number@comment.TimeSinceAdding(comment.DateTime).TimeUnit<br />
             @comment.Body <br />
             @if (User.Identity.IsAuthenticated)
             {

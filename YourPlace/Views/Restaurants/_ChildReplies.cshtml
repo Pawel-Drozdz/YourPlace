@@ -7,7 +7,7 @@
     @foreach (var reply in Model.ChildReplies)
     {
     <li>
-        @Html.ActionLink(reply.AuthorName, "Details", "Customers", new { id = reply.AuthorId }, null)<br />
+        ~@Html.ActionLink(reply.AuthorName, "Details", "Customers", new { id = reply.AuthorId }, null) - @reply.TimeSinceAdding(reply.CreateDate).Number@reply.TimeSinceAdding(reply.CreateDate).TimeUnit<br />
         @reply.Body
         @if (User.Identity.IsAuthenticated)
     {
