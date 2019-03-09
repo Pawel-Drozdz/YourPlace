@@ -32,7 +32,7 @@
         </div>
     }
 }
-else
+else if(User.Identity.IsAuthenticated)
 {
     <p>You did not rate this restaurant yet.</p>
     using (Html.BeginForm("RateRestaurant", "Restaurants", new { restaurantId = Model.Restaurant.Id }))
@@ -51,6 +51,8 @@ else
     <button type="submit">Delete</button>
 }
 
+<hr />
+
 @if (User.Identity.IsAuthenticated)
 {
     using (Html.BeginForm("AddComment", "Restaurants"))
@@ -62,10 +64,13 @@ else
 }
 else
 {
-        <p>You must be @Html.ActionLink("logged in", "Login", "Account",
-                      new { returnUrl = $"/Restaurants/Details/{Model.Restaurant.Id}" }, null) to post a comment</p> 
+    <div>
+        <p>@Html.ActionLink("Log in", "Login", "Account",
+                      new { returnUrl = $"/Restaurants/Details/{Model.Restaurant.Id}" }, null) to rate a restaurant or post a comment</p>
+    </div>
 }
 
+<h3>Comments:</h3>
 @foreach (var comment in Model.Comments)
 {
     <ul>
