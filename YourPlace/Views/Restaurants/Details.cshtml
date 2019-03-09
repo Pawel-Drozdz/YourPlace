@@ -32,7 +32,7 @@
         </div>
     }
 }
-else if(User.Identity.IsAuthenticated)
+else if (User.Identity.IsAuthenticated)
 {
     <p>You did not rate this restaurant yet.</p>
     using (Html.BeginForm("RateRestaurant", "Restaurants", new { restaurantId = Model.Restaurant.Id }))
@@ -55,6 +55,7 @@ else if(User.Identity.IsAuthenticated)
 
 @if (User.Identity.IsAuthenticated)
 {
+    <h4>Leave a comment</h4>
     using (Html.BeginForm("AddComment", "Restaurants"))
     {
         @Html.TextBoxFor(c => c.NewComment.Body)
@@ -65,9 +66,11 @@ else if(User.Identity.IsAuthenticated)
 else
 {
     <div>
-        <p>@Html.ActionLink("Log in", "Login", "Account",
-                      new { returnUrl = $"/Restaurants/Details/{Model.Restaurant.Id}" }, null) to rate a restaurant or post a comment</p>
-    </div>
+        <p>
+            @Html.ActionLink("Log in", "Login", "Account",
+                            new { returnUrl = $"/Restaurants/Details/{Model.Restaurant.Id}" }, null) to rate a restaurant or post a comment
+    </p>
+</div>
 }
 
 <h3>Comments:</h3>
@@ -75,8 +78,8 @@ else
 {
     <ul>
         <li>
-            The Author: @comment.AuthorName <br />
-            Comment: @comment.Body <br />
+            @Html.ActionLink(comment.AuthorName, "Details", "Customers", new { id = comment.AuthorId}, null) <br />
+            @comment.Body <br />
             @if (User.Identity.IsAuthenticated)
             {
                 using (Html.BeginForm("AddParentReply", "Restaurants", new { restaurantId = Model.Restaurant.Id, commentId = comment.Id }))

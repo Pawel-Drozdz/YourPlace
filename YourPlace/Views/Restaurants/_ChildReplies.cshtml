@@ -7,25 +7,33 @@
     @foreach (var reply in Model.ChildReplies)
     {
     <li>
-        Author: @reply.AuthorName<br />
-        Comment: @reply.Body
+        @Html.ActionLink(reply.AuthorName, "Details", "Customers", new { id = reply.AuthorId }, null)<br />
+        @reply.Body
         @if (User.Identity.IsAuthenticated)
+    {
+        using (Html.BeginForm("AddChildReply", "Restaurants", new
         {
-            using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
-                parentReplyId = reply.Id}))
-            {
-                @Html.TextBoxFor(r => r.NewChildReply.Body)
-                <button type="submit">Reply</button>
-            }
-        }
+            restaurantId = Model.RestaurantId,
+            commentId = Model.CommentId,
+            parentReplyId = reply.Id
+        }))
+        {
+            @Html.TextBoxFor(r => r.NewChildReply.Body)
+            <button type="submit">Reply</button>
+    }
+}
 
         @if (reply.ChildReplies != null && reply.ChildReplies.Count > 0)
-        {
-            <div>
-                @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel { ChildReplies = reply.ChildReplies,
-                        RestaurantId = Model.RestaurantId, CommentId = Model.CommentId });}
-            </div>
-        }
+    {
+        <div>
+            @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel
+            {
+                ChildReplies = reply.ChildReplies,
+                RestaurantId = Model.RestaurantId,
+                CommentId = Model.CommentId
+            });}
+        </div>
+}
     </li>
     }
 </ul>

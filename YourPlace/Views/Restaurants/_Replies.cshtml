@@ -6,17 +6,21 @@
     @foreach (var parRep in Model.ParentReplies)
     {
     <li>
-        Author: @parRep.AuthorName<br />
-        Comment: @parRep.Body<br />
+        @Html.ActionLink(parRep.AuthorName, "Details", "Customers", new { id = parRep.AuthorId }, null)<br />
+        @parRep.Body<br />
         @if (User.Identity.IsAuthenticated)
+    {
+        using (Html.BeginForm("AddChildReply", "Restaurants", new
         {
-            using (Html.BeginForm("AddChildReply", "Restaurants", new { restaurantId = Model.RestaurantId, commentId = Model.CommentId,
-                parentReplyId = parRep.Id}))
-            {
-                @Html.TextBoxFor(r => r.NewChildReply.Body)
-                <button type="submit">Reply</button>
-            }   
-        }
+            restaurantId = Model.RestaurantId,
+            commentId = Model.CommentId,
+            parentReplyId = parRep.Id
+        }))
+        {
+            @Html.TextBoxFor(r => r.NewChildReply.Body)
+            <button type="submit">Reply</button>
+    }
+}
 
         <div>
             @{Html.RenderPartial("_ChildReplies", new ChildReplyViewModel

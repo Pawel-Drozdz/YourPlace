@@ -80,3 +80,5 @@ C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.A
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddedDateOfRegistertoApplicationUsermodel.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AddedJoinTableRate.resources
 C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.RateModelChanged.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.AuthorIdaddedtoReply.resources
+C:\Users\pawel\source\repos\YourPlace\YourPlace\obj\Debug\YourPlace.Migrations.CreateDateAddedToReply.resources

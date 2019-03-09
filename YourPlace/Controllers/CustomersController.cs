@@ -22,6 +22,7 @@ namespace YourPlace.Controllers
             _context.Dispose();
         }
         
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var customers = new AllCustomersViewModel()
@@ -31,6 +32,7 @@ namespace YourPlace.Controllers
             return View(customers);
         }
 
+        [AllowAnonymous]
         public ActionResult Details(Guid id)
         {
             var stringId = id.ToString();

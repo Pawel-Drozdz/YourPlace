@@ -237,6 +237,14 @@
     <Compile Include="Migrations\201903072047387_RateModelChanged.Designer.cs">
       <DependentUpon>201903072047387_RateModelChanged.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903091956203_AuthorId added to Reply.cs" />
+    <Compile Include="Migrations\201903091956203_AuthorId added to Reply.Designer.cs">
+      <DependentUpon>201903091956203_AuthorId added to Reply.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903092002431_CreateDateAddedToReply.cs" />
+    <Compile Include="Migrations\201903092002431_CreateDateAddedToReply.Designer.cs">
+      <DependentUpon>201903092002431_CreateDateAddedToReply.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -368,6 +376,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903072047387_RateModelChanged.resx">
       <DependentUpon>201903072047387_RateModelChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903091956203_AuthorId added to Reply.resx">
+      <DependentUpon>201903091956203_AuthorId added to Reply.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903092002431_CreateDateAddedToReply.resx">
+      <DependentUpon>201903092002431_CreateDateAddedToReply.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

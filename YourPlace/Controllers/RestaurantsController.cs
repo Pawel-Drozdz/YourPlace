@@ -134,8 +134,8 @@ namespace YourPlace.Controllers
             foreach (var pr in parentReplies)
             {
                 var childRep = GetChildReplies(pr);
-                parReplies.Add(new Reply() { AuthorName = pr.AuthorName, Body = pr.Body, ParentReplyId = pr.ParentReplyId, Id = pr.Id,
-                    ChildReplies = pr.ChildReplies });
+                parReplies.Add(new Reply() { AuthorId = pr.AuthorId, AuthorName = pr.AuthorName, Body = pr.Body, CreateDate = pr.CreateDate,
+                    ParentReplyId = pr.ParentReplyId, Id = pr.Id, ChildReplies = pr.ChildReplies });
             }
             return parReplies;
         }
@@ -148,8 +148,8 @@ namespace YourPlace.Controllers
             foreach (var chr in childReplies)
             {
                 var chRep = GetChildReplies(chr);
-                chReplies.Add(new Reply() { AuthorName = chr.AuthorName, Body = chr.Body, ParentReplyId = chr.ParentReplyId, Id = chr.Id,
-                ChildReplies = chRep});
+                chReplies.Add(new Reply() { AuthorId = chr.AuthorId, AuthorName = chr.AuthorName, Body = chr.Body, CreateDate = chr.CreateDate,
+                    ParentReplyId = chr.ParentReplyId, Id = chr.Id, ChildReplies = chRep});
             }
             return chReplies;
         }
@@ -200,9 +200,9 @@ namespace YourPlace.Controllers
 
             newParentReply.ParentReplyId = 0;
             newParentReply.CommentId = commentId;
-            //newParentReply.AuthorId = Guid.Parse(userId); need to add AuthorId property to Reply model
+            newParentReply.AuthorId = Guid.Parse(userId);
             newParentReply.AuthorName = user.UserName;
-            //newParentReply.DateTime = DateTime.Now(); need to add DateTime property to Reply Model'
+            newParentReply.CreateDate = DateTime.Now;
 
             _context.Replies.Add(newParentReply);
             _context.SaveChanges();
@@ -217,9 +217,9 @@ namespace YourPlace.Controllers
 
             newChildReply.ParentReplyId = parentReplyId;
             newChildReply.CommentId = commentId;
-            //newChildReply.AuthorId = Guid.Parse(userId); need to add AuthorId property to Reply model
+            newChildReply.AuthorId = Guid.Parse(userId);
             newChildReply.AuthorName = user.UserName;
-            //newChildReply.DateTime = DateTime.Now(); need to add DateTime property to Reply Model'
+            newChildReply.CreateDate = DateTime.Now;
 
             _context.Replies.Add(newChildReply);
             _context.SaveChanges();
