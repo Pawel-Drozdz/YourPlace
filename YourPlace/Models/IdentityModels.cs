@@ -29,11 +29,15 @@ namespace YourPlace.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Reply> Replies { get; set; }
         public DbSet<Rate> Ratings { get; set; }
+        public DbSet<TypeTag> TypeTags { get; set; }
+        public DbSet<RestaurantTypeTags> RestaurantTypeTags { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Rate>()
                 .HasKey(r => new { r.RestaurantId, r.UserId});
+            modelBuilder.Entity<RestaurantTypeTags>()
+                .HasKey(r => new { r.RestaurantId, r.TypeTagId });
 
             base.OnModelCreating(modelBuilder);
         }

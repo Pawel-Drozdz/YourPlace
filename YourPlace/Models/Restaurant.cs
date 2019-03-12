@@ -23,5 +23,6 @@ namespace YourPlace.Models
 
         public List<Comment> Comments { get; set; }
         public List<Rate> Rating { get; set; }
+        public List<RestaurantTypeTags> RestaurantTypeTags { get; set; }
     }
 }
