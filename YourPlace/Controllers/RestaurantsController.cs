@@ -45,7 +45,8 @@ namespace YourPlace.Controllers
                 {
                     Name = restaurant.Name,
                     RestaurantType = restaurant.RestaurantType,
-                    Localisation = restaurant.Localisation
+                    Localisation = restaurant.Localisation,
+                    RestaurantTypeTags = restaurant.RestaurantTypeTags
                 };
 
                 if (restaurant.Id == 0)
@@ -68,6 +69,7 @@ namespace YourPlace.Controllers
                 restaurantInDb.Name = restaurant.Name;
                 restaurantInDb.RestaurantType = restaurant.RestaurantType;
                 restaurantInDb.Localisation = restaurant.Localisation;
+                restaurantInDb.RestaurantTypeTags = restaurant.RestaurantTypeTags;
             }
             _context.SaveChanges();
 
@@ -93,7 +95,8 @@ namespace YourPlace.Controllers
                 Comments = GetComments(id),
                 NewComment = new Comment(),
                 Rating = GetRestaurantRating(id),
-                OldRate = oldrate
+                OldRate = oldrate,
+                Tags = GetRestaurantsTypeTags(id)
             };
 
             foreach (var comment in restaurantViewModel.Comments)
@@ -285,6 +288,23 @@ namespace YourPlace.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
+        }
+
+        //Refactor this!
+        public List<TypeTag> GetRestaurantsTypeTags(int id)
+        {
+            var restaurantTypeTags = _context.RestaurantTypeTags.Where(r => r.RestaurantId == id).ToList();
+            var typeTags = new List<TypeTag>();
+
+            foreach (var r in restaurantTypeTags)
+            {
+                var tag = _context.TypeTags.FirstOrDefault(t => t.Id == r.TypeTagId);
+                if (tag != null)
+                {
+                    typeTags.Add(tag);
+                }
+            }
+            return typeTags;
         }
     }
 }

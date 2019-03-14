@@ -8,6 +8,15 @@
 <h2>@Model.Restaurant.Name</h2>
 <ul>
     <li>Restaurant type: @Model.Restaurant.RestaurantType</li>
+    <li>
+        Tags:
+        @foreach (var tag in Model.Tags)
+        {
+        <ul>
+            <li>@tag.Body</li>
+        </ul>
+        }
+    </li>
     <li>Localisation: @Model.Restaurant.Localisation</li>
     <li>
         Rating: @if (Model.Rating != 0)

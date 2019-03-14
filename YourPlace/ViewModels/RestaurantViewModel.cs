@@ -17,5 +17,6 @@ namespace YourPlace.ViewModels
         [Display(Name = "Rate the restaurant")]
         public int NewRate { get; set; }
         public List<byte> RatesForDropDownList { get; set; } = new List<byte>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        public List<TypeTag> Tags { get; set; }
     }
 }
