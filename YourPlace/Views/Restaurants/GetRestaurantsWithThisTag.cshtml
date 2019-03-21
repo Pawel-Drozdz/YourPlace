@@ -1,0 +1,14 @@
+﻿@model YourPlace.ViewModels.RestaurantsByTagViewModel
+@{
+    ViewBag.Title = "GetRestaurantsWithThisTag";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.TypeTag.Body</h2>
+<h3>Restaurants</h3>
+<ul>
+    @foreach (var r in Model.RestaurantTypeTags)
+    {
+        <li>@Html.ActionLink(r.Restaurant.Name, "Details", "Restaurants", new { id = r.Restaurant.Id}, null)</li>
+    }
+</ul>

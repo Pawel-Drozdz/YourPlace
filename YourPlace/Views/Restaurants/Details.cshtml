@@ -13,7 +13,7 @@
         @foreach (var tag in Model.Tags)
         {
         <ul>
-            <li>@tag.Body</li>
+            <li>@Html.ActionLink(tag.Body,"GetRestaurantsWithThisTag", "Restaurants", new { id = tag.Id }, null)</li>
         </ul>
         }
     </li>

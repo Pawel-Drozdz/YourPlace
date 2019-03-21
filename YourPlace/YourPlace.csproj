@@ -267,6 +267,7 @@
     <Compile Include="ViewModels\ChildReplyViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\ParentReplyViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantsByTagViewModel.cs" />
     <Compile Include="ViewModels\RestaurantViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +336,7 @@
     <Content Include="Views\Restaurants\_Replies.cshtml" />
     <Content Include="Views\Restaurants\_ChildReplies.cshtml" />
     <Content Include="Views\Customers\Details.cshtml" />
+    <Content Include="Views\Restaurants\GetRestaurantsWithThisTag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

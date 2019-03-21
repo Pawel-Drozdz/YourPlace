@@ -230,6 +230,20 @@ namespace YourPlace.Controllers
             return RedirectToAction("Details", "Restaurants", new { id = restaurantId });
         }
 
+        [AllowAnonymous]
+        public ActionResult GetRestaurantsWithThisTag(int id)
+        {
+            var restaurants = _context.RestaurantTypeTags.Include("Restaurant")
+                .Include("TypeTag")
+                .Where(r => r.TypeTagId == id)
+                .ToList();
+            var typeTag = _context.TypeTags.FirstOrDefault(t => t.Id == id);
+
+            var viewModel = new RestaurantsByTagViewModel { RestaurantTypeTags = restaurants, TypeTag = typeTag }; 
+
+            return View(viewModel);
+        }
+
         //Helper method, should be moved to a different file
         public float GetRestaurantRating(int id)
         {
