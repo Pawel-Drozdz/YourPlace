@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.TypeTag.Body</h2>
+<h2>@Model.TagBody</h2>
 <h3>Restaurants</h3>
 <ul>
-    @foreach (var r in Model.RestaurantTypeTags)
+    @foreach (var restaurant in Model.Restaurants)
     {
-        <li>@Html.ActionLink(r.Restaurant.Name, "Details", "Restaurants", new { id = r.Restaurant.Id}, null)</li>
+        <li>@Html.ActionLink(restaurant.Name, "Details", "Restaurants", new { id = restaurant.Id}, null)</li>
     }
 </ul>

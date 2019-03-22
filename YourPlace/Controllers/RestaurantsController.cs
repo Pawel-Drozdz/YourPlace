@@ -231,15 +231,23 @@ namespace YourPlace.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult GetRestaurantsWithThisTag(int id)
+        public ActionResult RestaurantsByTag(int id, string tagBody)
         {
-            var restaurants = _context.RestaurantTypeTags.Include("Restaurant")
-                .Include("TypeTag")
+            var restsAndTags = _context.RestaurantTypeTags.Include("Restaurant")
                 .Where(r => r.TypeTagId == id)
                 .ToList();
-            var typeTag = _context.TypeTags.FirstOrDefault(t => t.Id == id);
 
-            var viewModel = new RestaurantsByTagViewModel { RestaurantTypeTags = restaurants, TypeTag = typeTag }; 
+            var restaurants = new List<Restaurant>();
+
+            foreach (var r in restsAndTags)
+            {
+                if(r.Restaurant != null)
+                {
+                    restaurants.Add(r.Restaurant);
+                }
+            }
+
+            var viewModel = new RestaurantsByTagViewModel { Restaurants = restaurants, TagBody = tagBody }; 
 
             return View(viewModel);
         }

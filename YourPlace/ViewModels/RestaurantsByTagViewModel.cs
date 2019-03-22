@@ -5,7 +5,7 @@ namespace YourPlace.ViewModels
 {
     public class RestaurantsByTagViewModel
     {
-        public List<RestaurantTypeTags> RestaurantTypeTags { get; set; }
-        public TypeTag TypeTag { get; set; }
+        public List<Restaurant> Restaurants { get; set; }
+        public string TagBody { get; set; }
     }
 }
